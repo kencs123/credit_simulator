@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  credit-simulator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DOCKER_USERNAME:-kencs123}/credit-simulator:${VERSION:-latest}
+    container_name: credit-simulator
+    volumes:
+      - ./file_inputs.txt:/app/file_inputs.txt:ro
+    environment:
+      - JAVA_OPTS=-Xmx512m -Xms256m
+    stdin_open: true
+    tty: true

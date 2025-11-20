@@ -47,11 +47,11 @@ public class LoanApiService {
 
             String hardcodedJson = """
                 {
-                    "vehicleType": "Motor",
-                    "vehicleCondition": "Bekas",
-                    "vehicleYear": 2023,
+                    "vehicleType": "Mobil",
+                    "vehicleCondition": "Baru",
+                    "vehicleYear": 2025,
                     "totalLoanAmount": 100000000,
-                    "loanTenure": -1,
+                    "loanTenure": 5,
                     "downPayment": 50000000
                 }
                 """;

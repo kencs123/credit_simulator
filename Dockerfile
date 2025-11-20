@@ -1,0 +1,17 @@
+FROM eclipse-temurin:24-jdk-alpine AS builder
+
+WORKDIR /app
+
+COPY pom.xml .
+COPY src ./src
+
+RUN apk add --no-cache maven && \
+    mvn clean package -DskipTests && \
+    apk del maven
+
+FROM eclipse-temurin:24-jre-alpine
+
+WORKDIR /app
+COPY --from=builder /app/target/*-jar-with-dependencies.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
