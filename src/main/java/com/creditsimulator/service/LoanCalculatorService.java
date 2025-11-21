@@ -53,5 +53,5 @@ public class LoanCalculatorService {
 
         return rate;
     }
-    }
+}
 

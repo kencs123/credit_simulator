@@ -6,25 +6,34 @@ import com.creditsimulator.model.LoanData;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class CreditSimulatorView {
     private final NumberFormat currencyFormat;
+    private final Scanner scanner;
 
     public CreditSimulatorView() {
         this.currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+        this.scanner = new Scanner(System.in);
     }
 
-    public void showMessage(String message) {
-        System.out.println(message);
+    public void displayWelcome() {
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║   Simulasi Kredit Kendaraan        ║");
+        System.out.println("╚════════════════════════════════════╝");
     }
 
-    public void showError(String error) {
-        System.err.println("ERROR: " + error);
-    }
+    public int getMainMenuChoice() {
+        System.out.println("\nSilakan pilih metode input:");
+        System.out.println("1. Load dari API");
+        System.out.println("2. Input Manual");
+        System.out.print("\nPilihan Anda (1-2): ");
 
-    public void showErrors(List<String> errors) {
-        System.err.println("VALIDATION ERRORS:");
-        errors.forEach(error -> System.err.println("- " + error));
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
     }
 
     public void showLoanData(LoanData data) {

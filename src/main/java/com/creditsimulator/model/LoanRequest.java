@@ -19,7 +19,6 @@ public class LoanRequest {
     }
 
 
-
     public VehicleType getVehicleType() {
         return vehicleType;
     }

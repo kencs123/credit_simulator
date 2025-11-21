@@ -1,0 +1,3 @@
+vehicleType=Mobil,vehicleCondition=Baru,vehicleYear=2025,totalLoanAmount=100000000,loanTenure=5,downPayment=50000000
+vehicleType=Motor,vehicleCondition=Bekas,vehicleYear=2023,totalLoanAmount=25000000,loanTenure=3,downPayment=6250000
+vehicleType=Mobil,vehicleCondition=Baru,vehicleYear=2024,totalLoanAmount=150000000,loanTenure=4,downPayment=60000000

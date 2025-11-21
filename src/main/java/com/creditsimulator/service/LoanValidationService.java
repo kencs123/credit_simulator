@@ -16,6 +16,7 @@ public class LoanValidationService {
         validateTenor(request, errors);
         validateDownPayment(request, errors);
         validateLoanAmount(request, errors);
+        validateOtherAmount(request, errors);
 
         return errors;
     }
@@ -48,6 +49,18 @@ public class LoanValidationService {
     private void validateLoanAmount(LoanRequest request, List<String> errors) {
         if (request.getLoanAmount() > 1_000_000_000) {
             errors.add("Jumlah pinjaman tidak boleh lebih dari 1 miliar");
+        }
+    }
+
+    private void validateOtherAmount(LoanRequest request, List<String> errors) {
+        if (request.getLoanAmount() <= 0) {
+            errors.add("Jumlah pinjaman harus lebih dari 0");
+        }
+        if (request.getDownPayment() < 0) {
+            errors.add("DP tidak boleh kurang dari 0");
+        }
+        if (request.getDownPayment() > request.getLoanAmount()) {
+            errors.add("DP tidak boleh lebih dari jumlah pinjaman");
         }
     }
 }

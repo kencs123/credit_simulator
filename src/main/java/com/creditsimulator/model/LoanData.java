@@ -64,6 +64,7 @@ public class LoanData {
         this.loanTenure = loanTenure;
         this.downPayment = downPayment;
     }
+
     public LoanRequest toLoanRequest() {
         return new LoanRequest(
                 VehicleType.fromString(vehicleType),

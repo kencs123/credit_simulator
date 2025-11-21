@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class LoanApiService {
-    private static final String API_URL = "https://run.mocky.io/v3/9108b1da-beec-409e-ae14-e212003666c";
+    private static final String API_URL = "https://692026eb31e684d7bfcbe6f1.mockapi.io/api/v1/loanData/1";
     private final Gson gson;
 
     public LoanApiService() {
@@ -18,45 +18,37 @@ public class LoanApiService {
     }
 
     public LoanData fetchLoanData() throws Exception {
-        try {
-            URL url = new URL(API_URL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
 
-            int responseCode = connection.getResponseCode();
-            if (responseCode != HttpURLConnection.HTTP_OK) {
-                throw new Exception("HTTP Error: " + responseCode);
-            }
+        URL url = new URL(API_URL);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setConnectTimeout(5000);
+        connection.setReadTimeout(5000);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-            reader.close();
-
-            return gson.fromJson(response.toString(), LoanData.class);
-        } catch (Exception e) {
-
-            System.err.println("get from api fail " + e.getMessage());
-
-
-            String hardcodedJson = """
-                {
-                    "vehicleType": "Mobil",
-                    "vehicleCondition": "Baru",
-                    "vehicleYear": 2025,
-                    "totalLoanAmount": 100000000,
-                    "loanTenure": 5,
-                    "downPayment": 50000000
-                }
-                """;
-
-            return gson.fromJson(hardcodedJson, LoanData.class);
+        int responseCode = connection.getResponseCode();
+        if (responseCode != HttpURLConnection.HTTP_OK) {
+            throw new Exception("HTTP Error: " + responseCode);
         }
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+        }
+        reader.close();
+
+        String jsonResponse = response.toString();
+        if (jsonResponse == null || jsonResponse.trim().isEmpty()) {
+            throw new Exception("Empty response from API");
+        }
+
+        LoanData loanData = gson.fromJson(jsonResponse, LoanData.class);
+        if (loanData == null) {
+            throw new Exception("Failed to parse API response");
+        }
+        return loanData;
+
     }
 }

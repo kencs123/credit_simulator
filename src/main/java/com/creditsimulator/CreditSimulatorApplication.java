@@ -5,10 +5,13 @@ import com.creditsimulator.view.CreditSimulatorView;
 
 public class CreditSimulatorApplication {
     public static void main(String[] args) {
-        System.out.println("Credit Simulator Application Started");
         CreditSimulatorView view = new CreditSimulatorView();
         CreditSimulatorController controller = new CreditSimulatorController(view);
 
-        controller.loadFromApi();
+        if (args.length > 0) {
+            controller.processFileInput(args[0]);
+        } else {
+            controller.showMainMenu();
+        }
     }
 }

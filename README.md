@@ -2,6 +2,15 @@
 
 A vehicle credit simulator application built with Java and Maven.
 
+#WebServices EndPoint Url: https://692026eb31e684d7bfcbe6f1.mockapi.io/api/v1/loanData/1
+
+## Running Tests
+
+\`\`\`bash
+mvn test
+\`\`\`
+
+
 ## Prerequisites
 
 - Java 21 or higher
@@ -14,5 +23,84 @@ A vehicle credit simulator application built with Java and Maven.
 
 \`\`\`bash
 mvn clean package
+\`\`\`
+
+### Using Docker Compose
+
+\`\`\`bash
+docker-compose build
+\`\`\`
+
+## Running the Application
+
+### Method 1: Using the executable script
+
+Make the script executable (Linux/Mac):
+\`\`\`bash
+chmod +x bin/credit_simulator
+\`\`\`
+
+Run without input file:
+\`\`\`bash
+./bin/credit_simulator
+\`\`\`
+
+Run with input file:
+\`\`\`bash
+./bin/credit_simulator file_inputs.txt
+\`\`\`
+
+### Method 2: Using Docker Compose
+
+\`\`\`bash
+docker-compose run --rm credit-simulator
+\`\`\`
+
+With input file:
+\`\`\`bash
+docker-compose run --rm credit-simulator file_inputs.txt
+\`\`\`
+
+### Method 3: Direct JAR execution
+
+\`\`\`bash
+java -jar target/credit-simulator-jar-with-dependencies.jar
+\`\`\`
+
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration and deployment.
+
+### Setup
+
+1. Add the following secrets to your GitHub repository:
+    - `DOCKER_USERNAME`: Your Docker Hub username
+    - `DOCKER_PASSWORD`: Your Docker Hub password/token
+
+2. Push to master/main branch to trigger the pipeline
+
+### Pipeline stages:
+- Build and compile
+- Run unit tests
+- Package application
+- Build Docker image
+- Push to Docker Hub
+
+## Docker Image
+
+Pull the latest image:
+\`\`\`bash
+docker pull kencs123/credit-simulator:latest
+\`\`\`
+
+Run the container:
+\`\`\`bash
+docker run -it --rm kencs123/credit-simulator:latest
+\`\`\`
+
+Run with input file:
+\`\`\`bash
+docker run -it --rm -v $(pwd)/file_inputs.txt:/app/file_inputs.txt kencs123/credit-simulator:latest file_inputs.txt
 \`\`\`
 
