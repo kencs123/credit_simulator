@@ -22,10 +22,15 @@ this repo will remain public after the test period is over
 mvn clean package
 
 
+
 ### Using Docker Compose
 
 
 docker-compose build
+
+
+## Running Tests
+mvn test
 
 
 ## Running the Application
