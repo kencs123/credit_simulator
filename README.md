@@ -6,8 +6,6 @@ A vehicle credit simulator application built with Java and Maven.
 
 this repo will remain public after the test period is over
 
-./bin/credit_simulator and ./credit_simulator is available on the attached zip file
-
 
 
 ## Prerequisites
@@ -39,31 +37,35 @@ Make the script executable (Linux/Mac):
 chmod +x bin/credit_simulator
 
 
-Run without input file:
+- Run without input file:
 
-./bin/credit_simulator
+   ./bin/credit_simulator
 
 
-Run with input file:
+- Run with input file:
 
-./bin/credit_simulator file_inputs.txt
+   ./bin/credit_simulator file_inputs.txt
 
 
 ### Method 2: Using Docker Compose
 
+- Without input file:
+   docker-compose run --rm credit-simulator
 
-docker-compose run --rm credit-simulator
 
+- With input file:
 
-With input file:
-
-docker-compose run --rm credit-simulator file_inputs.txt
+   docker-compose run --rm credit-simulator file_inputs.txt
 
 
 ### Method 3: Direct JAR execution
 
+- Without input file:
+   java -jar target/credit-simulator-jar-with-dependencies.jar
 
-java -jar target/credit-simulator-jar-with-dependencies.jar
+- With input file:
+   java -jar target/credit-simulator-jar-with-dependencies.jar file_inputs.txt
+
 
 
 

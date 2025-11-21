@@ -49,5 +49,4 @@ build/
 hs_err_pid*
 
 # Build
-bin/
 out/
