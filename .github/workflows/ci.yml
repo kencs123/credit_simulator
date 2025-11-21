@@ -31,13 +31,11 @@ jobs:
       - name: Run tests
         run: mvn test
 
-      - name: Publish Test Report
-        uses: dorny/test-reporter@v1
+      - name: Display Test Results
         if: always()
-        with:
-          name: JUnit Tests
-          path: target/surefire-reports/*.xml
-          reporter: java-junit
+        run: |
+          echo "Test Results:"
+          cat target/surefire-reports/*.txt || echo "No test results found"
 
       - name: Package application
         run: mvn package -DskipTests
