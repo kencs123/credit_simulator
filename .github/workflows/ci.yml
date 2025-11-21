@@ -31,6 +31,14 @@ jobs:
       - name: Run tests
         run: mvn test
 
+      - name: Publish Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: JUnit Tests
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
+
       - name: Package application
         run: mvn package -DskipTests
 
