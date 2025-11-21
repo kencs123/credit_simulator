@@ -18,9 +18,9 @@ public class CreditSimulatorView {
     }
 
     public void displayWelcome() {
-        System.out.println("\n╔════════════════════════════════════╗");
-        System.out.println("║   Simulasi Kredit Kendaraan        ║");
-        System.out.println("╚════════════════════════════════════╝");
+        System.out.println("\n+====================================+");
+        System.out.println("|   Simulasi Kredit Kendaraan        |");
+        System.out.println("+====================================+");
     }
 
     public int getMainMenuChoice() {
@@ -49,17 +49,18 @@ public class CreditSimulatorView {
 
     public void showInstallments(List<InstallmentDetail> installments) {
         System.out.println("\n=== RINCIAN CICILAN ===");
-        System.out.println("┌──────┬─────────────────────┬────────────┐");
-        System.out.println("│ Tahun│ Cicilan/Bulan       │ Bunga (%)  │");
-        System.out.println("├──────┼─────────────────────┼────────────┤");
+        System.out.println("+------+---------------------+------------+");
+        System.out.println("| Tahun| Cicilan/Bulan       | Bunga (%)  |");
+        System.out.println("+------+---------------------+------------+");
 
         for (InstallmentDetail detail : installments) {
-            System.out.printf("│ %-5d│ %-19s │ %-10.2f │%n",
+            System.out.printf("| %-5d| %-19s | %-10.2f |%n",
                     detail.getYear(),
                     currencyFormat.format(detail.getMonthlyInstallment()),
                     detail.getInterestRate());
         }
 
-        System.out.println("└──────┴─────────────────────┴────────────┘\n");
+        System.out.println("+------+---------------------+------------+\n");
     }
+
 }
